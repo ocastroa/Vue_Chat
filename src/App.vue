@@ -17,9 +17,9 @@ export default {
 </script>
 
 <style>
-/* body {
+body {
   background-image: url('./assets/pubnub-filter-blocks-bg.png');
-} */
+}
 
 #app {
   font-family: Helvetica;

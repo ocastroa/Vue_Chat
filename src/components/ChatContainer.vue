@@ -1,7 +1,7 @@
 <template>
   <div class="chat-container">
     <div class="heading">
-      <h1>{{title}}</h1>
+      <h1>{{title + '- User: ' + uuid }}</h1>
     </div>
     <div class="body">
       <div class="table">
@@ -15,6 +15,23 @@
 <script>
   import ChatLog from '@/components/ChatLog';
   import MessageInput from '@/components/MessageInput';
+  import PubNubVue from 'pubnub-vue';
+  import {mapGetters} from 'vuex';
+
+  function fetchHistory(store){
+    PubNubVue.getInstance().history(
+        {
+          channel: 'vueChat',
+          count: 6, // how many items to fetch
+          stringifiedTimeToken: true, // false is the default
+        },
+        function(status, response) {
+          let msgs = response.messages;
+          store.commit('addHistory', {history: [msgs]});
+        }
+      )   
+  }
+
   export default {
     name: 'chat-container',
     components: {
@@ -23,14 +40,21 @@
     },
     data() {
       return {
-        title: 'PubNub and Vue ',
+        title: 'PubNub & Vue Global Chat ',
       };
     },
     mounted() {
+      // Subscribe to PubNub
       this.$pnSubscribe({
          channels: ['vueChat'],
       });
-    }    
+      this.$nextTick(fetchHistory(this.$store));
+    },
+    computed: {
+    ...mapGetters({
+      uuid: 'getMyUuid',
+    }),
+  },    
   };
 </script>
 
@@ -45,10 +69,10 @@ h1 {
 
 .chat-container {
   display: table;
-  max-width: 750px;
+  max-width: 400px;
   min-width: 300px;
-  width: 50%;
-  height: 400px;
+  width: 25%;
+  height: 500px;
   margin: auto;
   background-color: #FFFFFF;
   border: solid 1px #BFBFBF;
@@ -73,13 +97,6 @@ h1 {
   height: inherit;
   overflow: hidden;
 }
-
-/* .right-body {
-  display: block;
-  width: auto;
-  height: inherit;
-  overflow: hidden;
-} */
 
 .table {
   display: table;

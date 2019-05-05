@@ -3,74 +3,54 @@
     class="chat-log"
     ref="chatLogContainer"
   >
-    <message-bubble
-      v-for="msg in vueChat" 
-      :key="msg.key"
-      :text="msg.message.text"
-    ></message-bubble>
+   <message-bubble
+    v-for="historyMsg in history" 
+    :key="historyMsg.key"
+    :uuid="historyMsg.uuid"
+    :text="historyMsg.text"
+  ></message-bubble>
+
+  <message-bubble
+    v-for="msg in vueChat" 
+    :key="msg.key"
+    :uuid="msg.message.uuid"
+    :text="msg.message.text"
+  ></message-bubble>
   </div>
 </template>
 
 <script>
 import MessageBubble from '@/components/MessageBubble';
-
-// const pubnub = this.$pnGetInstance();
-
-// import {EventBus} from '../event-bus.js';
+import {mapGetters} from 'vuex';
 
 /**
- * Auto scrolls the chat log to the bottom when a new message is received or if
- *     the typing indicator's "typing-start" event fires.
+ * Auto scrolls the chat log to the bottom when a new message is received
  */
-// function scrollBottom() {
-//   this.$el.scrollTo(0, this.$el.scrollHeight);
-// }
+function scrollBottom() {
+  this.$el.scrollTo(0, this.$el.scrollHeight);
+}
 
 export default {
   name: 'chat-log',
   components: {MessageBubble},
   data() {
     return {
-      vueChat: this.$pnGetMessage('vueChat', this.receptor),
-      // showTypingIndicator: false,
+      /*
+       * $pnGetMessage will listen to a channel subscribed to and start to
+       * display messages as soon as they are received. 
+      */ 
+      vueChat: this.$pnGetMessage('vueChat'),
     }
   },
-  methods: {
-    receptor(msg) {
-        msg.message.text = `${msg.timetoken.substring(13,18)} - ${msg.message.text}`;
-    },
-},
-  // created() {
-  //   this.$pnGetInstance.history(
-  //       {
-  //           channel: 'vueChat',
-  //           count: 4, // how many items to fetch
-  //           stringifiedTimeToken: true, // false is the default
-  //       },
-  //       function(status, response) {
-  //           console.log(status, response);
-  //       }
-  //   )    
-    // const thisComponent = this;
-
-    // // Add a typing indicator visual to the UI
-    // EventBus.$on('typing-start', (chatKey) => {
-    //   if (this.$store.state.currentChat === chatKey) {
-    //     thisComponent.showTypingIndicator = true;
-    //     this.$nextTick(scrollBottom);
-    //   }
-    // });
-
-    // // Remove the typing indicator visual from the UI
-    // EventBus.$on('typing-stop', (chatKey) => {
-    //   if (this.$store.state.currentChat === chatKey) {
-    //     thisComponent.showTypingIndicator = false;
-    //   }
-    // });
-
-    // // Scroll the chat log to the bottom
-    // this.$nextTick(scrollBottom);
-  // },
+  updated(){
+    // Scroll the chat log to the bottom
+    this.$nextTick(scrollBottom);
+  },
+  computed: {
+    ...mapGetters({
+      history: 'getHistoryMsgs',
+    }),
+  },   
 };
 </script>
 
@@ -85,23 +65,6 @@ export default {
 }
 
 .chat-log::-webkit-scrollbar {
-  display: none;
-}
-
-.typing-indicator {
-  display: block;
-  width: 36px;
-  height: 36px;
-  margin-bottom: 4px;
-  float: left;
-  clear: both;
-}
-
-.typing-on {
-  display: block;
-}
-
-.typing-off {
   display: none;
 }
 </style>

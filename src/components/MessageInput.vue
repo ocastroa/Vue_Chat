@@ -6,45 +6,16 @@
       maxlength="20000"
       @keydown.enter="submitMessage"
     ></textarea>
-    <!-- <button v-on:click="push">push</button>       -->
-
   </div>
 </template>
 
 <script>
-// import {EventBus} from '../event-bus.js';
-
 export default {
   name: 'message-input',
   data() {
     return {};
   },
-//   created() {
-//     const thisComponent = this;
-
-//     // Focus on the text input, and clear it, when a chat is selected
-//     EventBus.$on('focus-input', (event) => {
-//       thisComponent.$refs.messageInput.focus();
-//       thisComponent.$refs.messageInput.value = '';
-//     });
-
-//     this.$nextTick(() => {
-//       thisComponent.$refs.messageInput.focus();
-//     });
-//   },
   methods: {
-    // isTyping(event) {
-    //   const state = this.$store.state;
-    //   const currentChatObject = state.chats[state.currentChat];
-
-    //   // Trigger the typing indicator start
-    //   if (
-    //     currentChatObject.typingIndicator &&
-    //     event.key !== 'Enter'
-    //   ) {
-    //     currentChatObject.typingIndicator.startTyping();
-    //   }
-    // },
     submitMessage(event) {
       if (!event.shiftKey) {
         event.preventDefault();
@@ -57,36 +28,20 @@ export default {
         return;
       }
 
+      const userUUID = this.$store.getters.getMyUuid;
+
+      // Publish to PubNub the text and user's uuid
       this.$pnPublish({ 
         channel: 'vueChat', 
         message: {
           text: event.target.value,
+          uuid: userUUID,
          },
-        }, (status, response) => 
-          console.log(status, response));
+        })
 
       // Reset the text input
       event.target.value = '';
-    
-
-      // const state = this.$store.state;
-      // const currentChatObject = state.chats[state.currentChat];
-
-      // // Only display typing indicator in private 1:1 chats
-      // if (currentChatObject.isPrivate && currentChatObject.typingIndicator) {
-      //   currentChatObject.typingIndicator.stopTyping();
-      // }
-
-      // // Send textarea input as message with ChatEngine
-      // // Use Vuex (in store.js) to send the message
-      // this.$store.dispatch('sendMessage', {
-      //   chat: this.$store.state.currentChat, // a chat key
-      //   message: {
-      //     text: event.target.value,
-      //   },
       }
-
-    // },
   },
 };
 </script>
@@ -100,7 +55,7 @@ export default {
 
 textarea {
   width: 98%;
-  height: 28px;
+  height: 30px;
   padding: 0 5px;
   margin: 0;
   box-sizing: border-box;

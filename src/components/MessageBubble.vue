@@ -1,12 +1,13 @@
 <template>
   <div
     class="message-bubble"
+    :class="me"
   >
-    <!-- <span
+    <span
       class="from"
-      :class="isGlobal"
-    ></span>
-    <br :class="me + ' ' + isGlobal"> -->
+      :class="me"
+    >{{ uuid }}</span>
+    <br :class="me">
     <span
       class="message-text"
     >{{ text }}</span>
@@ -16,25 +17,16 @@
 <script>
 export default {
   name: 'message-bubble',
-  props: ['text'],
+  props: ['uuid','text'],
 
   computed: {
-    isGlobal() {
-      let result = true;
-
-    //   if (this.$store.state.currentChat === this.$chatEngine.global.key) {
-    //     result = true;
-    //   }
-
-      // Don't show the name above the message bubble if the chat is 1:1
-      return result ? '' : 'display-none';
-    },
     me() {
-      let result = true;
+      let result = false;
 
-    //   if (this.$chatEngine.me.uuid === this.who) {
-    //     result = true;
-    //   }
+      // Check if the client uuid of the message received is your client uuid
+      if (this.$store.getters.getMyUuid === this.uuid) {
+        result = true;
+      }
 
       // Render the message bubble on the right side if it is from this client
       return result ? 'me' : '';
@@ -49,9 +41,9 @@ export default {
 <style scoped>
 .message-bubble {
   display: block;
-  width: 100%;
+  max-width: 50%;
   margin-bottom: 4px;
-  float: center;
+  float: left;
   clear: both;
 }
 
@@ -68,7 +60,7 @@ export default {
 }
 
 .message-bubble.me .message-text {
-  background-color: #c6c6c6;
+  background-color: #9ec6f5;
 }
 
 .from {
@@ -78,14 +70,15 @@ export default {
   color: #9DA7AF;
 }
 
+.from.me {
+  display: none;
+}
+
 .message-bubble span {
   display: block;
 }
 
-span.display-none,
-br.display-none,
-.message-bubble.me .from,
-br.me {
+.message-bubble.me br.me {
   display: none;
 }
 </style>
