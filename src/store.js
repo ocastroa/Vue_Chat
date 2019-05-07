@@ -13,10 +13,9 @@ const mutations = {
     state.me = me;
   },
   addHistory(state, {history}){
+    // element returns an array of 6 elems
     history.forEach(element => {
-      element.forEach(elem => {
-        state.history.push(elem.entry);
-      })
+      state.history.push(element.entry);
     });
   },
 }

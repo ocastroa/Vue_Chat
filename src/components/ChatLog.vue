@@ -5,16 +5,16 @@
   >
    <message-bubble
     v-for="historyMsg in history" 
-    :key="historyMsg.key"
-    :uuid="historyMsg.uuid"
-    :text="historyMsg.text"
+    v-bind:key="historyMsg.id"
+    v-bind:uuid="historyMsg.uuid"
+    v-bind:text="historyMsg.text"
   ></message-bubble>
 
   <message-bubble
     v-for="msg in vueChat" 
-    :key="msg.key"
-    :uuid="msg.message.uuid"
-    :text="msg.message.text"
+    v-bind:key="msg.id"
+    v-bind:uuid="msg.message.uuid"
+    v-bind:text="msg.message.text"
   ></message-bubble>
   </div>
 </template>
@@ -42,9 +42,10 @@ export default {
       vueChat: this.$pnGetMessage('vueChat'),
     }
   },
-  updated(){
-    // Scroll the chat log to the bottom
-    this.$nextTick(scrollBottom);
+  watch: {
+    vueChat: function(){
+      this.$nextTick(scrollBottom);
+    }
   },
   computed: {
     ...mapGetters({

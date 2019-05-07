@@ -27,7 +27,9 @@
         },
         function(status, response) {
           let msgs = response.messages;
-          store.commit('addHistory', {history: [msgs]});
+          msgs.forEach(elem => {
+            store.commit('addHistory', {history: [elem]});
+          })
         }
       )   
   }

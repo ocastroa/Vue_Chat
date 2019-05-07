@@ -16,6 +16,7 @@ const me = {
   uuid: myUuid,
 };
 
+// Initialize PubNub client API
 Vue.use(PubNubVue, {
   subscribeKey: subscribe_Key,
   publishKey: publish_Key,
