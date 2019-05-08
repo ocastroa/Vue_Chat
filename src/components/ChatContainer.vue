@@ -26,7 +26,8 @@
           stringifiedTimeToken: true, // false is the default
         },
         function(status, response) {
-          let msgs = response.messages;
+          const msgs = response.messages;
+          // Iterate msgs array and save each element in history
           msgs.forEach(elem => {
             store.commit('addHistory', {history: [elem]});
           })

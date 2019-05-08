@@ -11,7 +11,7 @@
   ></message-bubble>
 
   <message-bubble
-    v-for="msg in vueChat" 
+    v-for="msg in vueChatMsg" 
     v-bind:key="msg.id"
     v-bind:uuid="msg.message.uuid"
     v-bind:text="msg.message.text"
@@ -39,11 +39,11 @@ export default {
        * $pnGetMessage will listen to a channel subscribed to and start to
        * display messages as soon as they are received. 
       */ 
-      vueChat: this.$pnGetMessage('vueChat'),
+      vueChatMsg: this.$pnGetMessage('vueChat'),
     }
   },
   watch: {
-    vueChat: function(){
+    vueChatMsg: function(){
       this.$nextTick(scrollBottom);
     }
   },

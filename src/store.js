@@ -13,7 +13,6 @@ const mutations = {
     state.me = me;
   },
   addHistory(state, {history}){
-    // element returns an array of 6 elems
     history.forEach(element => {
       state.history.push(element.entry);
     });

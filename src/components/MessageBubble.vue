@@ -18,11 +18,9 @@
 export default {
   name: 'message-bubble',
   props: ['uuid','text'],
-
   computed: {
     me() {
       let result = false;
-
       // Check if the client uuid of the message received is your client uuid
       if (this.$store.getters.getMyUuid === this.uuid) {
         result = true;

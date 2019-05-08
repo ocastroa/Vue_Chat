@@ -16,6 +16,15 @@ const me = {
   uuid: myUuid,
 };
 
+try{
+  if(!publish_Key || !subscribe_Key){
+    throw 'PubNub Keys are missing.';
+  }
+}
+catch(err){
+  console.log(err);
+}
+
 // Initialize PubNub client API
 Vue.use(PubNubVue, {
   subscribeKey: subscribe_Key,
@@ -23,9 +32,9 @@ Vue.use(PubNubVue, {
   ssl: true
 }, store);
 
-if (!publish_Key || !subscribe_Key) {
-  console.error('PubNub Keys are missing.');
-}
+// if (!publish_Key || !subscribe_Key) {
+//   console.error('PubNub Keys are missing.');
+// }
 
 // Execute when the Vue instance is created
 function created(){
