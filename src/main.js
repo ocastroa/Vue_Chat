@@ -5,7 +5,7 @@ import App from './App'
 import store from './store';
 import PubNubVue from 'pubnub-vue'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
  
 const publish_Key = 'pub-c-d654dbd4-5d01-456c-b535-0786258382a2';
 const subscribe_Key = 'sub-c-67d4e790-6c35-11e9-89f1-56e8a30b5f0e';
@@ -25,16 +25,12 @@ catch(err){
   console.log(err);
 }
 
-// Initialize PubNub client API
+// Initialize the PubNub client API
 Vue.use(PubNubVue, {
   subscribeKey: subscribe_Key,
   publishKey: publish_Key,
   ssl: true
 }, store);
-
-// if (!publish_Key || !subscribe_Key) {
-//   console.error('PubNub Keys are missing.');
-// }
 
 // Execute when the Vue instance is created
 function created(){
