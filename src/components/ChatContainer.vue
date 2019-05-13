@@ -27,7 +27,7 @@
         },
         function(status, response) {
           const msgs = response.messages;
-          // Iterate msgs array and save each element in history
+          // Iterate msgs array and save each element to history
           msgs.forEach(elem => {
             store.commit('addHistory', {history: [elem]});
           })
