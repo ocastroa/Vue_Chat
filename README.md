@@ -1,12 +1,12 @@
 # Group Chat App in Vue.js
-A simple group chat app, built with [PubNub Vue V4 SDK](https://www.pubnub.com/docs/vue-javascript/pubnub-javascript-sdk#how-to-get-it-npm), that allows users to subscribe to a channel and publish messages to the group, all in realtime. Messages are saved to the network, using [Storage & Playback](https://docs.google.com/document/d/17UGiUHofh6kx7zJxbDcBHfC3gMYjPhyZpeULzs6BVr0/edit), so users can see past or missed messages. 
+A simple group chat app, built with [PubNub's Vue V4 SDK](https://www.pubnub.com/docs/vue-javascript/pubnub-javascript-sdk#how-to-get-it-npm), that allows users to subscribe to a channel and publish messages to the group, all in realtime. Messages are saved to the network, using [Storage & Playback](https://www.pubnub.com/docs/vue-javascript/api-reference-storage-and-playback#history), so users can see past or missed messages. 
 
 ## Setup
 1) First thing first, sign up for a free PubNub account to get your Pub/Sub API keys.
 
-<a href="https://dashboard.pubnub.com/signup?devrel_gh=Vue_Chat">
+  <a href="https://dashboard.pubnub.com/signup?devrel_gh=Vue_Chat">
     <img alt="PubNub Signup" src="https://i.imgur.com/og5DDjf.png" width=260 height=97/>
-</a>
+  </a>
 
 2) To save the messages to history, go to your [PubNub Admin Dashboard](https://admin.pubnub.com), click on the Demo Project App, or create a new app for this project, and then click on Keyset. Scroll down until your get to Storage & Playback. Toggle the switch to on and keep the default values the same.
 
@@ -33,7 +33,6 @@ npm run dev
 ## Build Your Own Group Chat App in Vue.js
 To learn more about this project or if you want to build this project from scratch, check out the tutorial (coming soon).
 
-<a href="https://www.pubnub.com/?devrel_gh=Vue_Chat">
+  <a href="https://www.pubnub.com/blog?devrel_gh=Vue_Chat">
     <img alt="PubNub Blog" src="https://i.imgur.com/aJ927CO.png" width=260 height=98/>
-</a>
-
+  </a>
