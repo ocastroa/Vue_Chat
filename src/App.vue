@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <img src="../media/pubnub-filter-blocks-bg.png"> -->
     <chat-container/>
   </div>
 </template>
@@ -18,7 +19,7 @@ export default {
 
 <style>
 body {
-  background-image: url('./assets/pubnub-filter-blocks-bg.png');
+  background: url('../media/pubnub-filter-blocks-bg.png');
 }
 
 #app {
