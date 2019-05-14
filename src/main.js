@@ -10,6 +10,9 @@ Vue.config.productionTip = false;
 const publish_Key = 'pub-c-d654dbd4-5d01-456c-b535-0786258382a2';
 const subscribe_Key = 'sub-c-67d4e790-6c35-11e9-89f1-56e8a30b5f0e';
 
+console.log(publish_Key);
+console.log(subscribe_Key);
+
 // Make a unique uuid for each client
 const myUuid = fourCharID();
 const me = {

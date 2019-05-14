@@ -30,6 +30,7 @@ export default {
 
       const userUUID = this.$store.getters.getMyUuid;
 
+      // console.log(even.target.value);
       // Publish to PubNub the text and user's uuid
       this.$pnPublish({ 
         channel: 'vueChat', 
