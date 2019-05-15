@@ -7,8 +7,8 @@ import PubNubVue from 'pubnub-vue'
 
 Vue.config.productionTip = false;
  
-const publish_Key = 'pub-c-d654dbd4-5d01-456c-b535-0786258382a2';
-const subscribe_Key = 'sub-c-67d4e790-6c35-11e9-89f1-56e8a30b5f0e';
+const publish_Key = 'YOUR_PUBLISH_KEY_HERE';
+const subscribe_Key = 'YOUR_SUBSCRIBE_KEY_HERE';
 
 console.log(publish_Key);
 console.log(subscribe_Key);
