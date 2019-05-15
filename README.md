@@ -2,7 +2,7 @@
 A simple group chat app, built with [PubNub's Vue V4 SDK](https://www.pubnub.com/docs/vue-javascript/pubnub-javascript-sdk#how-to-get-it-npm), that allows users to subscribe to a channel and publish messages to the group, all in realtime. Messages are saved to the network, using [Storage & Playback](https://www.pubnub.com/docs/vue-javascript/api-reference-storage-and-playback#history), so users can see past or missed messages. 
 
 <p align="center">
-  [<img src="vue-group-chat-app.png" alt="Vue Group Chat App" width="250" height="350" />]{https://ocastroa.github.io/Vue_Dist/dist/}
+  [<img src="vue-group-chat-app.png" alt="Vue Group Chat App" width="250" height="350" />](https://ocastroa.github.io/Vue_Dist/dist/)
 </p>
 
 ## Setup
