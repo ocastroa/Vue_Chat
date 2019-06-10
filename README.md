@@ -38,8 +38,8 @@ npm run dev
 8) Copy and paste the URL to another tab, or preferably a new window, and type a message in the message input. Press 'Enter' and you should see the message in both chat logs. Enter a couple more messages, then reload the page. Since Storage & Playback was enabled, the last 6 messages (you can change this number with 100 being the max) will show on the chat log.
 
 ## Build Your Own Group Chat App in Vue.js
-To learn more about this project or if you want to build this project from scratch, check out the tutorial (coming soon).
+To learn more about this project or if you want to build this project from scratch, check out the tutorial.
 
-  <a href="https://www.pubnub.com/blog?devrel_gh=Vue_Chat">
+  <a href="https://www.pubnub.com/blog/vuejs-group-chat-app-tutorial/?devrel_gh=Vue_Chat">
     <img alt="PubNub Blog" src="https://i.imgur.com/aJ927CO.png" width=260 height=98/>
   </a>
